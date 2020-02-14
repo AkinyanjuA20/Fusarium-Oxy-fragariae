@@ -1,13 +1,9 @@
 #!/bin/bash
 
-ProgDir=/home/akinya/git_repos/tools/seq_tools/assemblers/assembly_qc/quast
+export PATH=${PATH}:~/git_repos/assembly_fusarium_ex/scripts
 
-for Assembly in $(ls assembly/spades/*/*/filtered_contigs/contigs_min_500bp.fasta)
-do
-  Strain=$(echo $Assembly | rev | cut -f3 -d '/' | rev)
-  Organism=$(echo $Assembly | rev | cut -f4 -d '/' | rev)
-  # OutDir=assembly/spades/$Organism/$Strain
-  OutDir=$(dirname $Assembly)
+# spades assembly step
+spades_step.sh
 
-  sbatch $ProgDir/sub_quast.sh $Assembly $OutDir
-done
+# quast assembly QC step
+quast_step.sh

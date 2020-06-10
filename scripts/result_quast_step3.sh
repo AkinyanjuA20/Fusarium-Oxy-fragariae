@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#Step 3
 for Assembly in $(ls assembly/spades/*/*/filtered_contigs/transposed_report.tsv); do
     Strain=$(echo $Assembly | rev | cut -f3 -d '/' | rev);
     Organism=$(echo $Assembly | rev | cut -f4 -d '/' | rev);

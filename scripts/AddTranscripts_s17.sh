@@ -4,13 +4,13 @@
 #Run each line indivdually otherwise it will not work
 #Do segments one at a time for peace of mind
 
-BrakerGff=$(gene_pred/braker/F.oxysporum_fsp_fragariae/DSA14_003/F.oxysporum_fsp_fragariae_DSA14_003_brakerV2/augustus.gff3)
+BrakerGff=$(ls -d gene_pred/braker/F.oxysporum_fsp_fragariae/DSA15_041/F.oxysporum_fsp_fragariae_DSA15_041_brakerV2/augustus.gff3)
 	Strain=$(echo $BrakerGff| rev | cut -d '/' -f3 | rev)
 	Organism=$(echo $BrakerGff | rev | cut -d '/' -f4 | rev)
 	echo "$Organism - $Strain"
-	Assembly=$(ls repeat_masked/F.oxysporum_fsp_fragariae/DSA14_003/ncbi_edits_repmask/DSA14_003_contigs_softmasked_repeatmasker_TPSI_appended.fa)
-	CodingQuarryGff=gene_pred/codingquary/F.oxysporum_fsp_fragariae/DSA14_003/out/PredictedPass.gff3
-	PGNGff=gene_pred/codingquary/F.oxysporum_fsp_fragariae/DSA14_003/out/PGN_predictedPass.gff3
+	Assembly=$(ls repeat_masked/F.oxysporum_fsp_fragariae/DSA15_041/ncbi_edits_repmask/DSA15_041_contigs_softmasked_repeatmasker_TPSI_appended.fa)
+	CodingQuarryGff=gene_pred/codingquary/F.oxysporum_fsp_fragariae/DSA15_041/out/PredictedPass.gff3
+	PGNGff=gene_pred/codingquary/F.oxysporum_fsp_fragariae/DSA15_041/out/PGN_predictedPass.gff3
 	AddDir=gene_pred/codingquary/$Organism/$Strain/additional
 	FinalDir=gene_pred/codingquary/$Organism/$Strain/final
 	AddGenesList=$AddDir/additional_genes.txt

@@ -3,3 +3,6 @@ ProgDir=/home/gomeza/git_repos/scripts/bioinformatics_tools/Feature_annotation
     echo $Genes
     $ProgDir/interproscan.sh $Genes
   done 2>&1 | tee -a interproscan_submisison.log
+
+  #Have to move raw to $Organism/$Strain directory
+  #mv raw/ /projects/fusarium_ex_strawberry/gene_pred/interproscan/F.oxysporum_fsp_fragariae/DSA14_003/

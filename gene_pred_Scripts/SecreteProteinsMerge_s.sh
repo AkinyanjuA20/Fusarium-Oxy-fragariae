@@ -1,8 +1,10 @@
 #Secreted proteins merge
 # Added strains name
+# Ran line by line 
+# Use full path for SplitDir
 
-for Strain in DSA14_003 DSA15_041; do
-   for SplitDir in $(ls -d gene_pred/final_genes_split/*/$Strain); do
+for Strain in DSA14_003; do
+   for SplitDir in $(ls -d gene_pred/final_genes_split/F.oxysporum_fsp_fragariae/$Strain); do
    	Strain=$(echo $SplitDir | rev |cut -d '/' -f1 | rev)
    	Organism=$(echo $SplitDir | rev |cut -d '/' -f2 | rev)
    	InStringAA=''

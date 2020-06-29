@@ -5,14 +5,16 @@
 #/home/akinya/F.oxysporum_Ref_proteomes
 #../oldhome/groups/harrisonlab/uniprot/swissprot_2018_March
 #../dbUniprot/swissprot_2020_June
+# /home/akinya/git_repos/assembly_fusarium_ex/ProgScripts
+# /home/gomeza/git_repos/scripts/bioinformatics_tools/Feature_annotation
 
 for Proteome in $(ls gene_pred/codingquary/F.oxysporum_fsp_fragariae/DSA14_003/final/final_genes_appended_renamed.pep.fasta); do
 Strain=$(echo $Proteome | rev | cut -f3 -d '/' | rev)
 Organism=$(echo $Proteome | rev | cut -f4 -d '/' | rev)
-OutDir=gene_pred/swissprot/$Organism/$Strain
-SwissDbDir=../oldhome/groups/harrisonlab/uniprot/swissprot
+OutDir=gene_pred/swissprot20/$Organism/$Strain
+SwissDbDir=../dbUniprot/swissprot_2020_June
 SwissDbName=uniprot_sprot
-ProgDir=/home/gomeza/git_repos/scripts/bioinformatics_tools/Feature_annotation
+ProgDir=/home/akinya/git_repos/assembly_fusarium_ex/ProgScripts
 sbatch $ProgDir/sub_swissprot.sh $Proteome $OutDir $SwissDbDir $SwissDbName
 done
 

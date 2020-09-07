@@ -3,7 +3,7 @@
 # size= Expected genome size
 # DO in node and screen
 
-for file 1=FAL_trim.fastq.gz ; do
+for TrimReads in $(ls raw_dna/FAL69458.fastq.gz) ; do
     Organism=F.oxysporum_fsp_lactucae
     Strain=race_1
     Prefix="$Strain"_flye

@@ -1,4 +1,5 @@
 # Run in olc_assemblers
+#Log into node
 # flye assembly method
 # size= Expected genome size
 # DO in node and screen
@@ -25,8 +26,8 @@ for TrimReads in $(ls raw_dna/FAL69458.fastq.gz) ; do
   # error was due to redirection to Antonio's data
   # split script
   # rename.sh qin=33 in=raw_dna/FAL69458.fastq.gz out=flye_trimmed_renamed.fasta prefix=FolR1
-  #then ran
-  #flye --nano-raw assembly/flye/F.oxysporum_fsp_lactucae/race_1/flye_trimmed_renamed.fasta --out-dir assembly/flye/F.oxysporum_fsp_lactucae/race_1/ --genome-size 60m --threads 8
+  # then ran
+  # flye --nano-raw assembly/flye/F.oxysporum_fsp_lactucae/race_1/flye_trimmed_renamed.fasta --out-dir assembly/flye/F.oxysporum_fsp_lactucae/race_1/ --genome-size 60m --threads 8
 
 
 # step 1 - screen -a

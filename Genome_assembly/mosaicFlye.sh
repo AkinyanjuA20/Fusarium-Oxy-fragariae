@@ -8,5 +8,6 @@
 # Run for flye, miniasm and SMARTdenovo outputs
 
 # mosaic --reads <file> -o <dir> (--genome-size <int> | --flye-dir <dir> | --contigs <contigs>) [--threads <int>]
+# removed --threads
 
-python2 /home/akinya/git_repos/assembly_fusarium_ex/mosaic/mosaic --reads assembly/flye/F.oxysporum_fsp_lactucae/race_1/FAL_trim.fastq.gz -o /assembly/mosaicFLye/flye (--genome-size 60m | --flye-dir miniconda3/envs/olc_assemblers/bin/ | --contigs assembly.fasta) [--threads 8]
+python2 /home/akinya/git_repos/assembly_fusarium_ex/mosaic/mosaic --reads assembly/flye/F.oxysporum_fsp_lactucae/race_1/FAL_trim.fastq.gz -o assembly/mosaicFLye/flye (--genome-size 60000000 | --flye-dir /home/akinya/miniconda3/envs/olc_assemblers/bin/ | --contigs assembly/flye/F.oxysporum_fsp_lactucae/race_1/assembly.fasta)

@@ -16,7 +16,7 @@ for fn in ../oldhome/groups/harrisonlab/project_files/fusarium/qc_rna/paired/F.o
 do
 samp=`basename ${fn}`
 echo "Processing sample ${samp}"
-salmon quant -i gene_pred/salmon/DSA14_003_index/DSA14_003_index -l A \
+salmon quant -i gene_pred/salmon/DSA14_003_index -l A \
          -1 ../oldhome/groups/harrisonlab/project_files/fusarium/qc_rna/paired/F.oxysporum_fsp_cepae/Fus2_CzapekDox/F/*_trim.fq.gz \
          -2 ../oldhome/groups/harrisonlab/project_files/fusarium/qc_rna/paired/F.oxysporum_fsp_cepae/Fus2_CzapekDox/R/*_trim.fq.gz \
          -p 8 --validateMappings -o gene_pred/salmon/quants/${samp}_quant

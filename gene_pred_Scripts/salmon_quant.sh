@@ -17,7 +17,10 @@ do
 samp=`basename ${fn}`
 echo "Processing sample ${samp}"
 salmon quant -i gene_pred/salmon/DSA14_003_index -l A \
-         -1 ${fn}/F/*_trim.fq.gz \
-         -2 ${fn}/R/*_trim.fq.gz \
+         -1 ${fn}/F/6_S2_L001_R1_001_trim.fq.gz \
+         -2 ${fn}/R/6_S2_L001_R2_001_trim.fq.gz \
          -p 8 --validateMappings -o gene_pred/salmon/quants/${samp}_quant
 done
+
+# gave same error 3 TrimReads#
+# Detected a *potential* strand bias > 1% in an unstranded protocol check the file: gene_pred/salmon/quants/Fus2_CzapekDox_quant/lib_format_counts.json for details

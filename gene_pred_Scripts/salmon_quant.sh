@@ -24,3 +24,4 @@ done
 
 # gave same error 3 TrimReads#
 # Detected a *potential* strand bias > 1% in an unstranded protocol check the file: gene_pred/salmon/quants/Fus2_CzapekDox_quant/lib_format_counts.json for details
+# > ./bin/salmon quant -i transcripts_index -l <LIBTYPE> -1 reads1.fq -2 reads2.fq --validateMappings -o transcripts_quant

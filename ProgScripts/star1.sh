@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #SBATCH -J STAR
-#SBATCH --partition=long
-#SBATCH --mem-per-cpu=8G
-#SBATCH --cpus-per-task=8
+#SBATCH --partition=himem
+#SBATCH --mem-per-cpu=30G
+#SBATCH --cpus-per-task=12
 
 #Align RNAseq data with genome using STAR
 
@@ -19,15 +19,17 @@ InGenome=$(basename $1)
 InReadF=$(basename $2)
 InReadR=$(basename $3)
 OutDir=$4
+#length (bases) of the SA pre-indexing string. Tipically between 10-15
+Preindex=$5
 
 echo $InGenome
 echo $InReadF
 echo $InReadR
 
 # determine if optional file for genemodels has been provided
-if [ $5 ]; then
+if [ $6 ]; then
   GffProvided="Y"
-  InGff=$(basename $5)
+  InGff=$(basename $6)
 fi
 
 # Set working directory
@@ -62,14 +64,14 @@ ParentFeature="Parent"
 if [ $GffProvided == "N" ]; then
 STAR \
 --runMode genomeGenerate \
---genomeSAindexNbases 13 \
+--genomeSAindexNbases $Preindex \
 --genomeDir $GenomeDir \
 --genomeFastaFiles $InGenome \
 --runThreadN 16
 elif [ $GffProvided == "Y" ]; then
 STAR \
 --runMode genomeGenerate \
---genomeSAindexNbases 13 \
+--genomeSAindexNbases $Preindex \
 --genomeDir $GenomeDir \
 --genomeFastaFiles $InGenome \
 --sjdbGTFtagExonParentTranscript $ParentFeature \
@@ -86,36 +88,17 @@ fi
 echo "Aligning RNAseq reads"
 
 STAR \
+--winAnchorMultimapNmax 200 \
+--outSAMstrandField intronMotif \
 --genomeDir $GenomeDir \
 --outFileNamePrefix star_aligment \
---readFilesCommand zcat \
 --readFilesIn $InReadF $InReadR \
---outSAMtype BAM Unsorted \
---outSAMstrandField intronMotif \
+--readFilesCommand gunzip -c \
+--seedSearchStartLmax 30 \
+--outReadsUnmapped Fastx \
+--outSAMtype BAM SortedByCoordinate \
+--limitBAMsortRAM 180000000000 \
 --runThreadN 16
-
-
-#STAR \
-#--genomeDir $GenomeDir \
-#--outFileNamePrefix star_aligment \
-#--readFilesCommand zcat \
-#--readFilesIn $InReadF $InReadR \
-#--outSAMtype BAM SortedByCoordinate \
-#--outSAMstrandField intronMotif \
-#--winAnchorMultimapNmax 200 \
-#--seedSearchStartLmax 30 \
-#--quantMode TranscriptomeSAM GeneCounts \
-#--outReadsUnmapped Fastx \
-#--runThreadN 8
-
-# --genomeDir $GenomeDir \
-# --outFileNamePrefix star_aligment \
-# --readFilesIn $InReadF $InReadR \
-# --outSAMtype BAM SortedByCoordinate \
-# --outSAMstrandField intronMotif \
-# --runThreadN 8
-
-samtools sort star_aligmentAligned.out.bam > star_aligmentAligned.sorted.out.bam
 
 rm -r $GenomeDir
 rm $InGenome
